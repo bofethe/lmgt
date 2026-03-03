@@ -1,0 +1,29 @@
+/* ─────────────────────────────────────────────
+   tokens.css — Design tokens & CSS variables
+   ───────────────────────────────────────────── */
+:root {
+  /* Palette */
+  --bg:          #0d0f0e;
+  --surface:     #141716;
+  --surface2:    #1c1f1d;
+  --border:      #2c302d;
+  --border-hi:   #3a3e3b;
+  --accent:      #b8ff5a;
+  --accent-dim:  #8acc3a;
+  --accent-glow: rgba(184,255,90,0.15);
+  --danger:      #ff5252;
+  --warning:     #ffb347;
+  --ok:          #5affa0;
+  --text:        #edf0ec;
+  --muted:       #7a8078;
+  --muted-lo:    #4a4e4b;
+
+  /* Typography */
+  --sans: 'Syne', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+
+  /* Spacing */
+  --radius:    10px;
+  --radius-lg: 14px;
+  --gap:       16px;
+}
