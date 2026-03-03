@@ -6,16 +6,13 @@ window._records       = [];
 window._currentFilter = 'all';
 window._authMode      = 'login';
 window._returningId   = null;
-window._jwt           = null;   // live session JWT, passed to edge function
 
 // ─── Bootstrap ────────────────────────────────
 async function init() {
   await onAuthChange(async (session) => {
     if (session) {
-      window._jwt = session.access_token;
       await enterApp(session.user);
     } else {
-      window._jwt = null;
       showAuthWall();
     }
   });
@@ -71,7 +68,6 @@ async function handleSignOut() {
   try {
     await signOut();
     window._records = [];
-    window._jwt = null;
     document.getElementById('user-dropdown').classList.remove('open');
     showToast('Signed out');
   } catch (err) {
@@ -110,7 +106,6 @@ async function loadRecords() {
   try {
     window._records = await dbFetchRecords();
     renderAll(window._records);
-    setTimeout(() => checkAndSendNotifications(window._records, window._jwt), 1500);
   } catch (err) {
     container.innerHTML = `
       <div class="empty-state">
