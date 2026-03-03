@@ -1,0 +1,29 @@
+name: 💡 Improvement Suggestion
+description: Share a suggestion to improve the application's experience
+title: "[Suggestion]: "
+labels: ["enhancement"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        💡 Have an idea to make the application better? Let us know!
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: What's your suggestion?
+      description: Describe your idea clearly. What should be added, changed, or improved?
+      placeholder: Add your suggestion here...
+    validations:
+      required: true
+
+  - type: textarea
+    id: benefit
+    attributes:
+      label: Why would this be helpful?
+      description: Explain how this change would improve the experience for users
+      placeholder: Add your explanation here...
+    validations:
+      required: false

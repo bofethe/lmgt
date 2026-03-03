@@ -1,0 +1,26 @@
+name: General Help
+description: Get help with using the application
+title: "[Help]: "
+labels: ["help", "question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for using our application! Please provide details about your issue.
+
+  - type: textarea
+    attributes:
+      label: Description
+      description: What do you need help with?
+      placeholder: Describe your question...
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, version, or other relevant environment details
+      placeholder: e.g., Ubuntu 22.04.5, Google Chrome Version 145.0.7632.117 (Official Build) (64-bit)
+    validations:
+      required: false
