@@ -33,13 +33,7 @@ async function getSupabase() {
 
 async function signUp(email, password) {
   const sb = await getSupabase();
-  const { data, error } = await sb.auth.signUp({
-  email,
-  password,
-  options: {
-    emailRedirectTo: 'https://bofethe.github.io/lmgt',
-  },
-});
+  const { data, error } = await sb.auth.signUp({ email, password });
   if (error) throw error;
   return data;
 }
@@ -71,9 +65,7 @@ async function onAuthChange(callback) {
 async function resetPassword(email) {
   const sb = await getSupabase();
   const redirectTo = window.location.origin + window.location.pathname;
-  const { error } = await sb.auth.resetPasswordForEmail(email, {
-  redirectTo: 'https://bofethe.github.io/lmgt',
-});
+  const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo });
   if (error) throw error;
 }
 
@@ -86,7 +78,7 @@ async function dbFetchRecords() {
     .select('*')
     .order('due_date', { ascending: true });
   if (error) throw error;
-  return data;
+  return data ?? [];  // Supabase returns null for empty results, not []
 }
 
 async function dbInsertRecord(record) {

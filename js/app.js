@@ -65,10 +65,11 @@ async function handleAuthSubmit() {
 }
 
 async function handleSignOut() {
+  // Close the dropdown immediately — don't wait for the async signOut call
+  document.getElementById('user-dropdown').classList.remove('open');
   try {
     await signOut();
     window._records = [];
-    document.getElementById('user-dropdown').classList.remove('open');
     showToast('Signed out');
   } catch (err) {
     showToast('Sign out failed: ' + err.message);

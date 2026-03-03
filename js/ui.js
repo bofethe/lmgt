@@ -147,9 +147,12 @@ function toggleUserMenu() {
   document.getElementById('user-dropdown').classList.toggle('open');
 }
 
+// Close dropdown when clicking outside. Dropdown item clicks (like Sign Out)
+// call stopPropagation so this listener doesn't race with their handlers.
 document.addEventListener('click', e => {
   const menu = document.getElementById('user-dropdown');
-  if (menu && !e.target.closest('.user-menu')) {
+  if (!menu) return;
+  if (!e.target.closest('.user-menu')) {
     menu.classList.remove('open');
   }
 });
