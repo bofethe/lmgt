@@ -33,7 +33,13 @@ async function getSupabase() {
 
 async function signUp(email, password) {
   const sb = await getSupabase();
-  const { data, error } = await sb.auth.signUp({ email, password });
+  const { data, error } = await sb.auth.signUp({
+  email,
+  password,
+  options: {
+    emailRedirectTo: 'https://bofethe.github.io/lmgt',
+  },
+});
   if (error) throw error;
   return data;
 }
@@ -65,7 +71,9 @@ async function onAuthChange(callback) {
 async function resetPassword(email) {
   const sb = await getSupabase();
   const redirectTo = window.location.origin + window.location.pathname;
-  const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo });
+  const { error } = await sb.auth.resetPasswordForEmail(email, {
+  redirectTo: 'https://bofethe.github.io/lmgt',
+});
   if (error) throw error;
 }
 
