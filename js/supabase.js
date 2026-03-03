@@ -83,9 +83,14 @@ async function dbFetchRecords() {
 
 async function dbInsertRecord(record) {
   const sb = await getSupabase();
+
+  // Get the current user's ID to satisfy the RLS insert policy
+  const { data: { user } } = await sb.auth.getUser();
+  if (!user) throw new Error('Not authenticated');
+
   const { data, error } = await sb
     .from('lending_records')
-    .insert([record])
+    .insert([{ ...record, user_id: user.id }])
     .select()
     .single();
   if (error) throw error;
